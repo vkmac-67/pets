@@ -1,0 +1,33 @@
+{
+  "name": "crud-mascotas-duenos",
+  "version": "1.0.0",
+  "description": "CRUD de mascotas y duenos con Express.js, MySQL y carga de imagenes.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "crud",
+    "multer",
+    "mascotas"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "method-override": "^3.0.0",
+    "multer": "^1.4.5-lts.2",
+    "mysql2": "^3.11.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

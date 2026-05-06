@@ -1,0 +1,59 @@
+<%- include('../partials/header') %>
+
+<section class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+  <div>
+    <h1 class="text-3xl font-bold">Duenos</h1>
+    <p class="mt-1 text-slate-600">Administra los propietarios relacionados con cada mascota.</p>
+  </div>
+  <a href="/duenos/crear" class="inline-flex items-center justify-center rounded-md bg-teal-700 px-4 py-2 font-semibold text-white hover:bg-teal-800">
+    Nuevo dueno
+  </a>
+</section>
+
+<% if (typeof alert !== 'undefined') { %>
+  <div class="mb-5 rounded-md border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+    <%= alert %>
+  </div>
+<% } %>
+
+<div class="overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm">
+  <div class="overflow-x-auto">
+    <table class="min-w-full divide-y divide-slate-200">
+      <thead class="bg-slate-100 text-left text-sm font-semibold text-slate-700">
+        <tr>
+          <th class="px-4 py-3">ID</th>
+          <th class="px-4 py-3">Nombre</th>
+          <th class="px-4 py-3">Telefono</th>
+          <th class="px-4 py-3">Mascotas</th>
+          <th class="px-4 py-3 text-right">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100 text-sm">
+        <% if (duenos.length) { %>
+          <% duenos.forEach(dueno => { %>
+            <tr>
+              <td class="px-4 py-3"><%= dueno.id_dueno %></td>
+              <td class="px-4 py-3 font-medium"><%= dueno.nombre %></td>
+              <td class="px-4 py-3"><%= dueno.telefono %></td>
+              <td class="px-4 py-3"><%= dueno.total_mascotas %></td>
+              <td class="px-4 py-3">
+                <div class="flex justify-end gap-2">
+                  <a href="/duenos/<%= dueno.id_dueno %>/editar" class="rounded-md border border-slate-300 px-3 py-1.5 font-semibold text-slate-700 hover:bg-slate-100">Editar</a>
+                  <form action="/duenos/<%= dueno.id_dueno %>?_method=DELETE" method="POST" onsubmit="return confirm('Seguro que deseas eliminar este dueno?')">
+                    <button class="rounded-md bg-red-600 px-3 py-1.5 font-semibold text-white hover:bg-red-700" type="submit">Eliminar</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="5" class="px-4 py-8 text-center text-slate-500">No hay duenos registrados.</td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>
